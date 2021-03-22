@@ -158,6 +158,9 @@
     <ClInclude Include="..\src\Token.hpp" />
     <ClInclude Include="..\src\Tokenizer.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\tests\tc1.py" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
