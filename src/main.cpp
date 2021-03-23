@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     }*/
 
     std::ifstream inputStream;
-    char file[] = "../tests/tc1.py";
+    char file[] = "../tests/temp.py";
 
     inputStream.open(file, std::ios::in);
     if (!inputStream.is_open())

@@ -90,13 +90,14 @@ public:
 class ArrayNode : public ExprNode
 {
 public:
-    ArrayNode(Token token, ExprNode *subscript);
+    ArrayNode(Token token, ExprNode *subscript, bool slice=false);
     ~ArrayNode();
     virtual void print();
     virtual TypeDescriptor *evaluate(SymTab &symTab);
 
 private:
     ExprNode *_subscript;
+    bool _slice;
 };
 
 class ArrayLen : public ExprNode

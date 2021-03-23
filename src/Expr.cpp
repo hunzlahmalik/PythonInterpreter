@@ -289,7 +289,7 @@ TypeDescriptor *StringNode::evaluate(SymTab &symTab)
 }
 
 //Array Node
-ArrayNode::ArrayNode(Token token, ExprNode *sub) : ExprNode{token}, _subscript{sub} {}
+ArrayNode::ArrayNode(Token token, ExprNode *sub, bool slice) : ExprNode{token}, _subscript{sub}, _slice(slice) {}
 
 ArrayNode::~ArrayNode()
 {
@@ -309,12 +309,31 @@ TypeDescriptor *ArrayNode::evaluate(SymTab &symTab)
         if (debug)
             std::cout << "ArrayNode::evaluate: returning " << token().getString() << std::endl;
         ArrayDescriptor *temp = dynamic_cast<ArrayDescriptor *>(symTab.getValueFor(token().getName()));
-        if (temp->type() == TypeDescriptor::INTEGER)
+        if (temp->type() == TypeDescriptor::INTEGER && _slice==false)
         {
             NumberDescriptor *num = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));
             NumberDescriptor *returned = new NumberDescriptor(TypeDescriptor::INTEGER);
             returned->value.intValue = temp->valueInt[num->value.intValue];
             return returned;
+        }
+        else if(temp->type() == TypeDescriptor::INTEGER && _slice == true)//forward slicing only e.g lst[2:]
+        {
+            NumberDescriptor* index = dynamic_cast<NumberDescriptor*>(_subscript->evaluate(symTab));
+            ArrayDescriptor* returned;
+
+            if (temp->valueInt.size() > 0)
+            {
+                returned = new ArrayDescriptor(TypeDescriptor::INTEGER);
+                returned->valueInt.insert(returned->valueInt.end(), temp->valueInt.begin() + index->value.intValue, temp->valueInt.end());
+            }
+            else
+            {
+                returned = new ArrayDescriptor(TypeDescriptor::STRING);
+                returned->valueString.insert(returned->valueString.end(), temp->valueString.begin() + index->value.intValue, temp->valueString.end());
+            }
+            return returned;
+            //slicing
+            //ArrayDescriptor*newarr=
         }
 
         NumberDescriptor *num = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));

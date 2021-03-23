@@ -1,7 +1,6 @@
 lst=[100,200,300,400]
-a=lst
-a=lst[3]
+a=lst[2]
+arr=lst[2:]
 print(lst)
 print(a)
-b=lst[:0]
-
+print(arr)

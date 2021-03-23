@@ -754,9 +754,19 @@ ExprNode *Parser::primary()
         {
             ExprNode *tested = test();
             bracket = tokenizer.getToken();
+            bool slice = false;
+            /// <summary>
+            /// check slicing here
+            /// </summary>
+            /// <returns></returns>
+            if (bracket.isColon())
+            {
+                bracket = tokenizer.getToken();
+                slice = true;
+            }
             if (!bracket.isCloseBracket())
                 die("Parser::primary", "Expected a closeBracket, instead got", tok);
-            return new ArrayNode(tok, tested);
+            return new ArrayNode(tok, tested, slice);
         }
         else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end())
         {
