@@ -316,7 +316,7 @@ TypeDescriptor *ArrayNode::evaluate(SymTab &symTab)
             returned->value.intValue = temp->valueInt[num->value.intValue];
             return returned;
         }
-        else if(temp->type() == TypeDescriptor::INTEGER && _slice == true)//forward slicing only e.g lst[2:]
+        else if(_slice == true)//forward slicing only e.g lst[2:]
         {
             NumberDescriptor* index = dynamic_cast<NumberDescriptor*>(_subscript->evaluate(symTab));
             ArrayDescriptor* returned;
