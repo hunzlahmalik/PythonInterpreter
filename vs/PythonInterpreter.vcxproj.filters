@@ -42,26 +42,50 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Expr.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Parser.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Statements.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SymTab.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Token.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Tokenizer.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\tests\tc1.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\all.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\tc2.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\tc3.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\tc4.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\tc5.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\tc6.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\tc7.py">
+      <Filter>Tests</Filter>
+    </None>
+    <None Include="..\tests\temp.py">
       <Filter>Tests</Filter>
     </None>
   </ItemGroup>

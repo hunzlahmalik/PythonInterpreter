@@ -16,8 +16,9 @@ int main(int argc, char *argv[])
     }*/
 
     std::ifstream inputStream;
+    char file[] = "../tests/tc1.py";
 
-    inputStream.open("tc7.py", std::ios::in);
+    inputStream.open(file, std::ios::in);
     if (!inputStream.is_open())
     {
         std::cout << "Unable top open " << argv[1] << ". Terminating...";

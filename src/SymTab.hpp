@@ -1,7 +1,3 @@
-//
-// Created by Ali A. Kooshesh on 2/5/19.
-//
-
 #ifndef EXPRINTER_SYMTAB_HPP
 #define EXPRINTER_SYMTAB_HPP
 
@@ -22,7 +18,9 @@ struct TypeDescriptor
         INTEGER,
         DOUBLE,
         BOOL,
-        STRING
+        STRING,
+        INTARRAY, 
+        STRARRAY
     };
 
     TypeDescriptor(types type) : _type{type} {}

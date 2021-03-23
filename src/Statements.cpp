@@ -321,7 +321,7 @@ void PrintStatement::evaluate(SymTab &symTab)
                     if (i != a->valueInt.size() - 1)
                         std::cout << ", ";
                 }
-                std::cout << "]" << std::endl;
+                std::cout << "]";// << std::endl;
             }
             else
             {

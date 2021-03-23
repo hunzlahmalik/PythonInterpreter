@@ -3,7 +3,7 @@ l2=[4,5,6]
 l3=l1+l2
 e1=l1[0]
 elast=l2[2]
-einvalid=l2[4]
+# einvalid=l2[4]
 
 var1=45
 var2=34

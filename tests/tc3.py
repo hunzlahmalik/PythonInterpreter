@@ -6,5 +6,5 @@ b=3
 if a>b:
   c = 1
 else:
-  c=0	
+  c=0
 print(c)
