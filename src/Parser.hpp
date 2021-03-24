@@ -26,7 +26,7 @@ public:
     Statements *suite();
     //Statements *func_suite();
     Statements *func_body();
-    ExprNode *returnTrue();
+    ExprNode *returnTrue(bool ternary = false);
 
     std::vector<ExprNode *> testList();
     std::vector<std::string> parameter_list();

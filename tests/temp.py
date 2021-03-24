@@ -1,6 +1,6 @@
-lst=["100","200","300","400"]
-a=lst[2]
-arr=lst[2:]
-print(lst)
+a=1+20
+def x(a):
+    return 1 if a < 10 else 20
+
 print(a)
-print(arr)
+print(x(a))

@@ -471,7 +471,8 @@ IfNode::~IfNode()
     delete body;
 }
 
-IfNode::IfNode(ExprNode *rel, Statements *bod) : relNode{rel}, body{bod}, evaluatedTrue{false} {}
+IfNode::IfNode(ExprNode *rel, Statements *bod) 
+    : relNode{rel}, body{bod}, evaluatedTrue{false} {}
 
 void IfNode::print()
 {
