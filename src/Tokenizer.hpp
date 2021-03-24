@@ -15,7 +15,7 @@ public:
     Tokenizer(std::ifstream &inStream);
     Token getToken();
     void ungetToken();
-    void printProcessedTokens();
+    std::vector<std::string> printProcessedTokens();
     Token createDedent();
 
     std::vector<Token> _tokens;

@@ -7,54 +7,58 @@
 
 Token::Token() : _name{""}, _eof{false}, _eol{false}, _symbol{'\0'}, _isWholeNumber{false}, _isDedent{false}, _isIndent{false} {}
 
-void Token::print() const
+std::string Token::print() const
 {
+    std::string out;
     if (eol())
-        std::cout << "EOL\n";
+       out+= "EOL\n";
     else if (eof())
-        std::cout << "EOF";
+       out+= "EOF";
     else if (isOpenParen())
-        std::cout << "(";
+       out+= "(";
     else if (isCloseParen())
-        std::cout << ")";
+       out+= ")";
     else if (isOpenBracket())
-        std::cout << "[";
+       out+= "[";
     else if (isCloseBracket())
-        std::cout << "]";
+       out+= "]";
     else if (isPeriod())
-        std::cout << ".";
+       out+= ".";
     else if (isAssignmentOperator())
-        std::cout << " = ";
+       out+= " = ";
     else if (isSemiColon())
-        std::cout << ";";
+       out+= ";";
     else if (isColon())
-        std::cout << ":";
+       out+= ":";
     else if (isMultiplicationOperator())
-        std::cout << " * ";
+       out+= " * ";
     else if (isAdditionOperator())
-        std::cout << " + ";
+       out+= " + ";
     else if (isSubtractionOperator())
-        std::cout << " - ";
+       out+= " - ";
     else if (isModuloOperator())
-        std::cout << " % ";
+       out+= " % ";
     else if (isDivisionOperator())
-        std::cout << " / ";
+       out+= " / ";
     else if (isName())
-        std::cout << getName();
+       out+= getName();
     else if (isWholeNumber())
-        std::cout << getWholeNumber();
+       out+= getWholeNumber();
     else if (isRelational())
-        std::cout << " " << _relational << " ";
+       out+= " " + _relational + " ";
     else if (isQuote())
-        std::cout << "\"";
+       out+= "\"";
     else if (isString())
-        std::cout << getString();
+       out+= getString();
     else if (isComma())
-        std::cout << " , ";
+       out+= " , ";
     else if (isDedent())
-        std::cout << "DEDENT: " << getDedent();
+       out+= "DEDENT: " + std::to_string(getDedent());
     else if (isIndent())
-        std::cout << "INDENT: " << getIndent();
+       out+= "INDENT: " + std::to_string(getIndent());
     else
-        std::cout << "Uninitialized token.\n";
+       out+= "Uninitialized token.\n";
+
+    std::cout << out;
+    return out;
 }

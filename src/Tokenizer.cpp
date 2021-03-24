@@ -215,13 +215,18 @@ void Tokenizer::ungetToken()
     ungottenToken = true;
 }
 
-void Tokenizer::printProcessedTokens()
+std::vector<std::string> Tokenizer::printProcessedTokens()
 {
+    std::vector<std::string> ret;
     for (auto iter = _tokens.begin(); iter != _tokens.end(); ++iter)
     {
-        iter->print();
+        std::string temp;
+        temp+=iter->print();
         std::cout << std::endl;
+        temp += "\n";
+        ret.push_back(temp);
     }
+    return ret;
 }
 
 //grab the most recent dedent, delete it, and return a dedent token

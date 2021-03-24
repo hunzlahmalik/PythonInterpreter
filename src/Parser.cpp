@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 
 #include "Token.hpp"
@@ -19,11 +20,23 @@
 
 void Parser::die(std::string where, std::string message, Token &token)
 {
+    std::string error;
     std::cout << where << " " << message << std::endl;
-    token.print();
+    error += where + " " + message + "\n";
+    error+=token.print();
     std::cout << std::endl;
+    error += "\n";
+
     std::cout << "\nThe following is a list of tokens that have been identified up to this point.\n";
-    tokenizer.printProcessedTokens();
+    error += "\nThe following is a list of tokens that have been identified up to this point.\n";
+
+    std::vector<std::string> temp=tokenizer.printProcessedTokens();
+    for (auto s : temp)
+        error += s;
+
+    std::ofstream fout("error.log");
+    fout << error;
+
     exit(1);
 }
 

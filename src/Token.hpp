@@ -112,7 +112,7 @@ public:
     int getDedent() const { return _dedent; }
     bool isDedent() const { return _isDedent; }
 
-    void print() const;
+    std::string print() const;
 
 private:
     std::string _name;
