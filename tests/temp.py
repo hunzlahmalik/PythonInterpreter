@@ -1,6 +1,11 @@
-a=1+20
-def x(a):
-    return 1 if a < 10 else 20
+xlam=lambda a:1 if a>10 else 0
 
+a=xlam(11)
+b=xlam(5)
 print(a)
-print(x(a))
+print(b)
+
+add=lambda x, y: x+y
+c=add(3,1)
+print(c)
+

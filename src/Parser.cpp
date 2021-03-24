@@ -297,21 +297,24 @@ Statements *Parser::statements()
 }
 
 //body checks for an indent, creates a new set of statements at that indent level, and checks the dedent token
-Statements *Parser::suite()
+Statements *Parser::suite(bool lambda)
 {
     Token tok;
     tok = tokenizer.getToken();
-    if (!tok.eol())
+    if (!lambda)
     {
-        die("Parser::body", "Expected a eol, instead got", tok);
-    }
-    while (tok.eol())
-    {
-        tok = tokenizer.getToken();
-    }
-    if (!tok.isIndent())
-    {
-        die("Parser::body", "Expected a indent, instead got", tok);
+        if (!tok.eol())
+        {
+            die("Parser::body", "Expected a eol, instead got", tok);
+        }
+        while (tok.eol())
+        {
+            tok = tokenizer.getToken();
+        }
+        if (!tok.isIndent())
+        {
+            die("Parser::body", "Expected a indent, instead got", tok);
+        }
     }
     int ifLevel = tok.getIndent();
 
@@ -764,6 +767,99 @@ Statement *Parser::assignStatement()
             die("Parser::assignStatement", "Expected a closed bracket, instead got", closed);
         ArrAssignmentStatement *a = new ArrAssignmentStatement(varName.getName(), rhsArr);
         return a;
+    }
+    //check lambda here
+    if (arrayTest.isLambda())
+    {
+        Token funcName = varName;
+        functions.push_back(funcName.getName());
+        if (!funcName.isName() || funcName.isKeyword())
+            die("Parser::defStatement", "Expected a name, instead got", funcName);
+
+        //Token tok = tokenizer.getToken();
+
+
+        //get paramets if there are any
+        std::vector<std::string> param = parameter_list();
+        
+        Token tok = tokenizer.getToken();
+
+        if (!tok.isColon())
+            die("Parser::defStatement", "Expected a :, instead got", tok);
+
+        //tok = tokenizer.getToken();
+
+        //make return token here
+        Token returnTok;
+        returnTok.setName("return");
+
+        //add to the tokenizer list here
+        tokenizer._tokens.push_back(returnTok);
+
+        //return statement
+        Statements* body=new Statements();
+        ExprNode* rightHandSideExpr = test();
+        //terenary operator
+        tok = tokenizer.getToken();
+        if (tok.isIf())
+        {
+            std::vector<IfNode*> ifs;
+            ExprNode* rel;
+            bool isElse = false;
+            do
+            {
+                if (tok.isElse())
+                {
+                    isElse = true;
+                    tok = tokenizer.getToken();
+                    if (!tok.isIf())
+                    {
+                        tokenizer.ungetToken();
+                        rel = returnTrue(true);     //this is not an else if and should always execute if we get to it
+                        tokenizer.ungetToken(); //mine
+                    }
+                    else
+                    {
+                        rel = test();
+                    }
+                }
+                else
+                {
+                    rel = test();
+                }
+                //tok = tokenizer.getToken();
+
+                //Statements* bod = suite();
+                Statements* bod = new Statements();
+                if (isElse)
+                    rightHandSideExpr = expr();
+
+                bod->addStatement(new ReturnStatement(rightHandSideExpr));
+
+                IfNode* node = new IfNode(rel, bod);
+                ifs.push_back(node);
+                tok = tokenizer.getToken();
+
+            } while (tok.isElse());
+            IfStatement* ifStmt = new IfStatement(ifs);
+            tokenizer.ungetToken();
+            body->addStatement(ifStmt);
+        }
+        else
+        {
+            tokenizer.ungetToken();
+            ReturnStatement* retStmt = new ReturnStatement(rightHandSideExpr);
+            body->addStatement(retStmt);
+        }
+
+        tok = tokenizer.getToken();
+        while (tok.eol())
+        {
+            tok = tokenizer.getToken();
+        }
+        tokenizer.ungetToken();
+        return new FunctionDef(param, body, funcName.getName());
+
     }
     // if we grab the token and it is NOT [, we have a regular assignment expression
     else

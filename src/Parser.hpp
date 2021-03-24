@@ -23,7 +23,7 @@ public:
 
     Statement *assignStatement();
 
-    Statements *suite();
+    Statements *suite(bool lambda =false);
     //Statements *func_suite();
     Statements *func_body();
     ExprNode *returnTrue(bool ternary = false);

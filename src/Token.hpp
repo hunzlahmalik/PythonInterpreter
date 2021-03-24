@@ -75,6 +75,7 @@ public:
     bool isAppend() const { return _name == "append"; }
     bool isDef() const { return _name == "def"; }
     bool isReturn() const { return _name == "return"; }
+    bool isLambda() const { return _name == "lambda"; }
 
     bool isName() const { return _name.length() > 0; }
     std::string getName() const { return _name; }

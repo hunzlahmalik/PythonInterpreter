@@ -21,7 +21,7 @@ SymTab::~SymTab()
     {
         for (auto b : a)
         {
-            delete b.second;
+            //delete b.second;
         }
         a.clear();
     }

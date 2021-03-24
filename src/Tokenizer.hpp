@@ -18,11 +18,12 @@ public:
     void printProcessedTokens();
     Token createDedent();
 
+    std::vector<Token> _tokens;
+
 private:
     Token lastToken;
     bool ungottenToken;
     std::ifstream &inStream;
-    std::vector<Token> _tokens;
     bool parsingANewLine;
     int indent;
     int indentLevel;
