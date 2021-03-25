@@ -10,6 +10,7 @@ class Functions;
 // initialized, determines if a give variable has been defined or not, and if
 // a variable has been defined, it returns its value.
 
+//head to types
 struct TypeDescriptor
 {
 
@@ -19,7 +20,7 @@ struct TypeDescriptor
         DOUBLE,
         BOOL,
         STRING,
-        INTARRAY, 
+        INTARRAY,
         STRARRAY
     };
 
@@ -33,6 +34,7 @@ protected:
     types _type;
 };
 
+//number type
 struct NumberDescriptor : TypeDescriptor
 {
     NumberDescriptor(types descType) : TypeDescriptor(descType) {}
@@ -44,12 +46,14 @@ struct NumberDescriptor : TypeDescriptor
     } value;
 };
 
+//string type
 struct StringDescriptor : TypeDescriptor
 {
     StringDescriptor(types descType) : TypeDescriptor(descType) {}
     std::string value;
 };
 
+//arrya type
 struct ArrayDescriptor : TypeDescriptor
 {
     ArrayDescriptor(types descType) : TypeDescriptor(descType) {}
@@ -57,6 +61,7 @@ struct ArrayDescriptor : TypeDescriptor
     std::vector<std::string> valueString;
 };
 
+//symbol table
 class SymTab
 {
 public:

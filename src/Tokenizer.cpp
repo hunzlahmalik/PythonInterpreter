@@ -1,16 +1,12 @@
-//
-// Created by Ali A. Kooshesh on 1/30/19.
-//
-
 #include <iostream>
 #include <string>
 #include "Tokenizer.hpp"
 
+// The function reads and returns all characters of the name.
 std::string Tokenizer::readName()
 {
     // This function is called when it is known that
     // the first character in input is an alphabetic character.
-    // The function reads and returns all characters of the name.
 
     std::string name;
     char c;
@@ -23,11 +19,11 @@ std::string Tokenizer::readName()
     return name;
 }
 
+// The function reads and returns all remaining digits.
 int Tokenizer::readInteger()
 {
     // This function is called when it is known that
     // the first character in input is a digit.
-    // The function reads and returns all remaining digits.
 
     int intValue = 0;
     char c;
@@ -221,7 +217,7 @@ std::vector<std::string> Tokenizer::printProcessedTokens()
     for (auto iter = _tokens.begin(); iter != _tokens.end(); ++iter)
     {
         std::string temp;
-        temp+=iter->print();
+        temp += iter->print();
         std::cout << std::endl;
         temp += "\n";
         ret.push_back(temp);

@@ -1,7 +1,3 @@
-//
-// Created by Ali A. Kooshesh on 1/30/19.
-//
-
 #ifndef EXPRINTER_TOKENIZER_HPP
 #define EXPRINTER_TOKENIZER_HPP
 

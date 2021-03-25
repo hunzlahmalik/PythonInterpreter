@@ -1,14 +1,13 @@
-//
-// Created by Ali A. Kooshesh on 2/5/19.
-//
-
 #ifndef EXPRINTER_ARITHEXPR_HPP
 #define EXPRINTER_ARITHEXPR_HPP
 
 #include "Token.hpp"
 #include "SymTab.hpp"
 
-// Classes in this file define the internal representation of arithmetic expressions.
+// Classes for the arithemetic expressions
+
+// Expr: virtual parent class
+// all other are derived classes
 
 // An ExprNode serves as the base class (super class) for arithmetic expression.
 // It forces the derived classes (subclasses) to implement two functions, print and
@@ -58,7 +57,6 @@ private:
 // WholeNumber is a leaf-node in an expression tree. It corresponds to
 // a terminal in the production rules of the grammar that describes the
 // syntax of arithmetic expressions.
-
 class WholeNumber : public ExprNode
 {
 public:
@@ -70,7 +68,6 @@ public:
 // Variable is a leaf-node in an expression tree. It corresponds to
 // a terminal in the production rules of the grammar that describes the
 // syntax of arithmetic expressions.
-
 class Variable : public ExprNode
 {
 public:
@@ -79,6 +76,7 @@ public:
     virtual TypeDescriptor *evaluate(SymTab &symTab);
 };
 
+// node for the string in an expression tree.
 class StringNode : public ExprNode
 {
 public:
@@ -87,10 +85,11 @@ public:
     virtual TypeDescriptor *evaluate(SymTab &symTab);
 };
 
+// node for the array, array can be integer and array can be
 class ArrayNode : public ExprNode
 {
 public:
-    ArrayNode(Token token, ExprNode *subscript, bool slice=false);
+    ArrayNode(Token token, ExprNode *subscript, bool slice = false);
     ~ArrayNode();
     virtual void print();
     virtual TypeDescriptor *evaluate(SymTab &symTab);
@@ -108,6 +107,7 @@ public:
     virtual TypeDescriptor *evaluate(SymTab &symTab);
 };
 
+// call node is for the function call
 class CallNode : public ExprNode
 {
 public:

@@ -1,3 +1,11 @@
+/**
+ * @file main.cpp
+ * @author Victor
+ * @brief main file for mini python interpreter
+ * @version 0.1
+ * 
+ */
+
 #include <iostream>
 #include <vector>
 
@@ -7,6 +15,13 @@
 
 extern bool debug(false);
 
+/**
+ * @brief main function for mini_python interpreter
+ * 
+ * @param argc argument count
+ * @param argv arguments
+ * @return int 
+ */
 int main(int argc, char *argv[])
 {
 
@@ -16,7 +31,7 @@ int main(int argc, char *argv[])
     }*/
 
     std::ifstream inputStream;
-    char file[] = "../tests/temp.py";
+    char file[] = "../tests/tc7.py";
 
     inputStream.open(file, std::ios::in);
     if (!inputStream.is_open())

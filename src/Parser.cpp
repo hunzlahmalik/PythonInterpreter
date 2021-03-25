@@ -1,12 +1,3 @@
-
-/*  The majority of the work is done by the class 'convert'.
-    This class builds an expression tree using the input infix
-    expression.  A post-order traversal of the expression tree 'dumps'
-    it into an array in postfix form.  The iterator copies the token
-    from this array to user's arrays.
-
-*/
-
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -42,10 +33,6 @@ void Parser::die(std::string where, std::string message, Token &token)
 
 Statements *Parser::statements()
 {
-    // This function is called when we KNOW that we are about to parse
-    // a series of assignment statements.
-    //modified to include relational statements
-
     Statements *stmts = new Statements();
     Token tok = tokenizer.getToken();
 
@@ -206,7 +193,7 @@ Statements *Parser::statements()
             FunctionDef *funcState = new FunctionDef(param, body, funcName.getName());
             stmts->addStatement(funcState);
         }
-        //else if lambda
+        //else if lambda, lambda will be handleed in the assignStatement
         else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end())
         {
             Token funcName = tok;
@@ -277,7 +264,7 @@ Statements *Parser::statements()
                 tokenizer.ungetToken();
                 stmts->addStatement(ifStmt);
             }
-            else
+            else // not ternary operator
             {
                 tokenizer.ungetToken();
                 ReturnStatement* retStmt = new ReturnStatement(rightHandSideExpr);
@@ -293,7 +280,7 @@ Statements *Parser::statements()
         }
         else
         {
-
+            //it's the assignment statement
             tokenizer.ungetToken();
             Statement *assignStmt = assignStatement();
             stmts->addStatement(assignStmt);
@@ -858,7 +845,7 @@ Statement *Parser::assignStatement()
             tokenizer.ungetToken();
             body->addStatement(ifStmt);
         }
-        else
+        else//not ternary operator
         {
             tokenizer.ungetToken();
             ReturnStatement* retStmt = new ReturnStatement(rightHandSideExpr);

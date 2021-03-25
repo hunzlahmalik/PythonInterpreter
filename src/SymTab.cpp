@@ -1,7 +1,3 @@
-//
-// Created by Ali A. Kooshesh on 2/5/19.
-//
-
 #include <iostream>
 #include "SymTab.hpp"
 #include "Statements.hpp"

@@ -44,29 +44,28 @@ TypeDescriptor *InfixExprNode::evaluate(SymTab &symTab)
     {
         if (lValue->type() == TypeDescriptor::STRING)
         {
-            if (dynamic_cast<StringDescriptor*>(lValue) && dynamic_cast<StringDescriptor*>(rValue))//is stringg
-            {
-                StringDescriptor* result = new StringDescriptor(TypeDescriptor::STRING);
-                result->value = dynamic_cast<StringDescriptor*>(lValue)->value + dynamic_cast<StringDescriptor*>(rValue)->value;
+            if (dynamic_cast<StringDescriptor *>(lValue) && dynamic_cast<StringDescriptor *>(rValue)) //is stringg
+            {// string+string
+                StringDescriptor *result = new StringDescriptor(TypeDescriptor::STRING);
+                result->value = dynamic_cast<StringDescriptor *>(lValue)->value + dynamic_cast<StringDescriptor *>(rValue)->value;
                 return result;
             }
-            else//is vector
-            {
-                ArrayDescriptor* temp;
-                ArrayDescriptor* l = dynamic_cast<ArrayDescriptor*>(lValue);
-                ArrayDescriptor* r = dynamic_cast<ArrayDescriptor*>(rValue);
+            else //is vector
+            { //vector+vector
+                ArrayDescriptor *temp;
+                ArrayDescriptor *l = dynamic_cast<ArrayDescriptor *>(lValue);
+                ArrayDescriptor *r = dynamic_cast<ArrayDescriptor *>(rValue);
                 if (l->valueInt.size() > 0)
-                {
+                { //vector<int>+vector<int> array append array
                     temp = new ArrayDescriptor(TypeDescriptor::INTEGER);
                     temp->valueInt = l->valueInt;
                     temp->valueInt.insert(temp->valueInt.end(), r->valueInt.begin(), r->valueInt.end());
                 }
                 else
-                {
+                {//vector<string>+vector<string>
                     temp = new ArrayDescriptor(TypeDescriptor::STRING);
-                    temp->valueString = dynamic_cast<ArrayDescriptor*>(lValue)->valueString;
+                    temp->valueString = dynamic_cast<ArrayDescriptor *>(lValue)->valueString;
                     temp->valueString.insert(temp->valueString.end(), r->valueString.begin(), r->valueString.end());
-
                 }
                 // creates new ArrayDescriptor with int types (empty for now)
                 //temp->valueInt.push_back(dynamic_cast<NumberDescriptor*>(element)->value.intValue);
@@ -74,30 +73,29 @@ TypeDescriptor *InfixExprNode::evaluate(SymTab &symTab)
             }
         }
         else
-        {
+        {// integer
             if (dynamic_cast<NumberDescriptor *>(lValue) && dynamic_cast<NumberDescriptor *>(rValue))
-            {
+            { //number+number
                 NumberDescriptor *result = new NumberDescriptor(TypeDescriptor::INTEGER);
                 result->value.intValue = dynamic_cast<NumberDescriptor *>(lValue)->value.intValue + dynamic_cast<NumberDescriptor *>(rValue)->value.intValue;
                 return result;
             }
             else //array or vector
             {
-                ArrayDescriptor* temp;
-                ArrayDescriptor* l = dynamic_cast<ArrayDescriptor*>(lValue);
-                ArrayDescriptor* r = dynamic_cast<ArrayDescriptor*>(rValue);
+                ArrayDescriptor *temp;
+                ArrayDescriptor *l = dynamic_cast<ArrayDescriptor *>(lValue);
+                ArrayDescriptor *r = dynamic_cast<ArrayDescriptor *>(rValue);
                 if (l->valueInt.size() > 0)
-                {
+                {//int array
                     temp = new ArrayDescriptor(TypeDescriptor::INTEGER);
                     temp->valueInt = l->valueInt;
                     temp->valueInt.insert(temp->valueInt.end(), r->valueInt.begin(), r->valueInt.end());
                 }
                 else
-                {
+                {//string array
                     temp = new ArrayDescriptor(TypeDescriptor::STRING);
-                    temp->valueString = dynamic_cast<ArrayDescriptor*>(lValue)->valueString;
+                    temp->valueString = dynamic_cast<ArrayDescriptor *>(lValue)->valueString;
                     temp->valueString.insert(temp->valueString.end(), r->valueString.begin(), r->valueString.end());
-
                 }
                 // creates new ArrayDescriptor with int types (empty for now)
                 //temp->valueInt.push_back(dynamic_cast<NumberDescriptor*>(element)->value.intValue);
@@ -309,17 +307,17 @@ TypeDescriptor *ArrayNode::evaluate(SymTab &symTab)
         if (debug)
             std::cout << "ArrayNode::evaluate: returning " << token().getString() << std::endl;
         ArrayDescriptor *temp = dynamic_cast<ArrayDescriptor *>(symTab.getValueFor(token().getName()));
-        if (temp->type() == TypeDescriptor::INTEGER && _slice==false)
+        if (temp->type() == TypeDescriptor::INTEGER && _slice == false)
         {
             NumberDescriptor *num = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));
             NumberDescriptor *returned = new NumberDescriptor(TypeDescriptor::INTEGER);
             returned->value.intValue = temp->valueInt[num->value.intValue];
             return returned;
         }
-        else if(_slice == true)//forward slicing only e.g lst[2:]
+        else if (_slice == true) //forward slicing only e.g lst[2:]
         {
-            NumberDescriptor* index = dynamic_cast<NumberDescriptor*>(_subscript->evaluate(symTab));
-            ArrayDescriptor* returned;
+            NumberDescriptor *index = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));
+            ArrayDescriptor *returned;
 
             if (temp->valueInt.size() > 0)
             {

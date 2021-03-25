@@ -1,7 +1,3 @@
-//
-// Created by Ali A. Kooshesh on 2/5/19.
-//
-
 #include "Statements.hpp"
 #include "SymTab.hpp"
 
@@ -11,7 +7,6 @@ Statement::Statement() {}
 Statement::~Statement() {}
 
 // Statements
-
 Statements::Statements() {}
 
 Statements::~Statements()

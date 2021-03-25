@@ -1,7 +1,3 @@
-//
-// Created by Ali A. Kooshesh on 2/5/19.
-//
-
 #ifndef EXPRINTER_STATEMENTS_HPP
 #define EXPRINTER_STATEMENTS_HPP
 
@@ -11,12 +7,7 @@
 #include "Expr.hpp"
 #include "SymTab.hpp"
 
-// The Statement (abstract) class serves as a super class for all statements that
-// are defined in the language. Ultimately, statements have to be evaluated.
-// Therefore, this class defines evaluate, a pure-virtual function to make
-// sure that all subclasses of Statement provide an implementation for this
-// function.
-
+// pure-virutal class 
 class Statement
 {
 public:
@@ -32,18 +23,20 @@ private:
     int indentLevel;
 };
 
-// Statements is a collection of Statement. For example, all statements in a function
-// can be represented by an instance of Statements.
-
+//list of statements and a statement can be represented as on of python terms
 class Statements
 {
 public:
     Statements();
     ~Statements();
 
+    //addStatement to the list of Statements
     void addStatement(Statement *statement);
+    
+    //runs all statements
     void evaluate(SymTab &symTab);
 
+    //print function for all the sattemnts
     void print();
 
 private:
@@ -52,15 +45,19 @@ private:
 
 // AssignmentStatement represents the notion of an lValue having been assigned an rValue.
 // The rValue is an expression.
-
 class AssignmentStatement : public Statement
 {
 public:
     AssignmentStatement();
     ~AssignmentStatement();
+
+    //makes an assignment statement
     AssignmentStatement(std::string lhsVar, ExprNode *rhsExpr);
 
+    //return the left variable name
     std::string &lhsVariable();
+
+    //returns the right side expression
     ExprNode *&rhsExpression();
 
     virtual void evaluate(SymTab &symTab);
@@ -71,14 +68,19 @@ private:
     ExprNode *_rhsExpression;
 };
 
+//array assignment operator
 class ArrAssignmentStatement : public Statement
 {
 public:
     ArrAssignmentStatement();
     ~ArrAssignmentStatement();
+
+    //makes new array assignment
     ArrAssignmentStatement(std::string lhsVar, std::vector<ExprNode *> rhsArray);
 
     std::string &lhsVariable();
+
+    //returnt the right side list of expressions
     std::vector<ExprNode *> &rhsArray();
 
     virtual void evaluate(SymTab &symTab);
@@ -119,6 +121,7 @@ private:
     std::string _arrName;
 };
 
+//append funciton
 class ArrOpAppend : public Statement
 {
 public:
@@ -134,6 +137,8 @@ private:
     std::string _arrName;
 };
 
+// one of main statements
+// print statement is for about every varaible and functions
 class PrintStatement : public Statement
 {
 public:
@@ -167,6 +172,7 @@ private:
     Statements *body;
 };
 
+//node for the if statements
 class IfNode : public Statement
 {
 public:
@@ -184,6 +190,7 @@ private:
     bool evaluatedTrue;
 };
 
+//collective list of IFNodes
 class IfStatement : public Statement
 {
 public:
@@ -245,6 +252,7 @@ private:
     ExprNode *_call;
 };
 
+//'return' statement
 class ReturnStatement : public Statement
 {
 public:

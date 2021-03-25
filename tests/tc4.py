@@ -5,7 +5,7 @@ b=x(5)
 print(a)
 print(b)
 
-add=lambda x, y: x+y;
+add=lambda a, b: a+b;
 c=add(3,1)
 print(c)
 
