@@ -1,7 +1,3 @@
-//
-// Created by Ali A. Kooshesh on 1/30/19.
-//
-
 #include <iostream>
 #include "Token.hpp"
 
