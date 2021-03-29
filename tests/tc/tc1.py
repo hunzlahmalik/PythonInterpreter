@@ -1,6 +1,6 @@
-apple=2
+a=2
 b=3
-c=apple+b
+c=a+b
 s1="functional"
 s2="programming"
 s3=s1+" "+ s2

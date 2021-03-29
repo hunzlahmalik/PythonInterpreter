@@ -1,10 +1,26 @@
 #include <iostream>
+#include <fstream>
 #include "Expr.hpp"
 #include "SymTab.hpp"
 #include "Statements.hpp"
 #include <string>
 
 extern bool debug;
+
+void die(std::string where, std::string message)
+{
+    std::string error;
+    std::cout << where << " " << message << std::endl;
+    error += where + " " + message + "\n";
+    std::cout << std::endl;
+    error += "\n";
+
+
+    std::ofstream fout("error.log");
+    fout << error;
+
+    exit(1);
+}
 
 // ExprNode
 ExprNode::ExprNode(Token token) : _token{token} {}
@@ -306,6 +322,9 @@ TypeDescriptor *ArrayNode::evaluate(SymTab &symTab)
         if (temp->type() == TypeDescriptor::INTEGER && _slice == false)
         {
             NumberDescriptor *num = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));
+            if (num->value.intValue >= temp->valueInt.size())
+                die("ArrayNode::Evaluate", "Index out of range");
+                
             NumberDescriptor *returned = new NumberDescriptor(TypeDescriptor::INTEGER);
             returned->value.intValue = temp->valueInt[num->value.intValue];
             return returned;
@@ -314,7 +333,8 @@ TypeDescriptor *ArrayNode::evaluate(SymTab &symTab)
         {
             NumberDescriptor *index = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));
             ArrayDescriptor *returned;
-
+            if (index->value.intValue >= temp->valueInt.size())
+                die("ArrayNode::Evaluate", "Index out of range");
             if (temp->valueInt.size() > 0)
             {
                 returned = new ArrayDescriptor(TypeDescriptor::INTEGER);
@@ -331,6 +351,8 @@ TypeDescriptor *ArrayNode::evaluate(SymTab &symTab)
         }
 
         NumberDescriptor *num = dynamic_cast<NumberDescriptor *>(_subscript->evaluate(symTab));
+        if (num->value.intValue >= temp->valueInt.size())
+            die("ArrayNode::Evaluate", "Index out of range");
         StringDescriptor *returned = new StringDescriptor(TypeDescriptor::STRING);
         returned->value = temp->valueString[num->value.intValue];
         return returned;

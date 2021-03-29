@@ -143,7 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Expr.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\mini_python.cpp" />
     <ClCompile Include="..\src\Parser.cpp" />
     <ClCompile Include="..\src\Statements.cpp" />
     <ClCompile Include="..\src\SymTab.cpp" />
@@ -168,6 +168,9 @@
     <None Include="..\tests\tc6.py" />
     <None Include="..\tests\tc7.py" />
     <None Include="..\tests\temp.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dryrun.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

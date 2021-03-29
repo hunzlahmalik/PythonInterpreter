@@ -8,3 +8,4 @@ print(b)
 add=lambda x, y: x+y;
 c=add(3,1)
 print(c)
+

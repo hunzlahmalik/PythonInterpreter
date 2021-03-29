@@ -7,6 +7,8 @@
 #include "Parser.hpp"
 #include "Statements.hpp"
 
+std::vector<std::string> Fparam;
+
 // Parser functions
 
 void Parser::die(std::string where, std::string message, Token &token)
@@ -177,7 +179,7 @@ Statements *Parser::statements()
                 die("Parser::defStatement", "Expected a open parenthesis, instead got", tok);
 
             std::vector<std::string> param = parameter_list();
-
+            Fparam = param;
             tok = tokenizer.getToken();
 
             if (!tok.isCloseParen())
@@ -194,7 +196,7 @@ Statements *Parser::statements()
             stmts->addStatement(funcState);
         }
         //else if lambda, lambda will be handleed in the assignStatement
-        else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end())
+        else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end() && (std::find(Fparam.begin(), Fparam.end(), tok.getName())==Fparam.end()))
         {
             Token funcName = tok;
             tok = tokenizer.getToken();
@@ -292,7 +294,7 @@ Statements *Parser::statements()
         die("Parser::Statements", "Expected a eof, instead got", tok);
 
     tokenizer.ungetToken();
-
+    Fparam.clear();
     return stmts;
 }
 
@@ -781,7 +783,7 @@ Statement *Parser::assignStatement()
 
         //get paramets if there are any
         std::vector<std::string> param = parameter_list();
-        
+        Fparam = param;
         Token tok = tokenizer.getToken();
 
         if (!tok.isColon())
@@ -858,6 +860,7 @@ Statement *Parser::assignStatement()
             tok = tokenizer.getToken();
         }
         tokenizer.ungetToken();
+        Fparam.clear();
         return new FunctionDef(param, body, funcName.getName());
 
     }
@@ -915,11 +918,15 @@ Statement *Parser::assignStatement()
         } while (tok.isElse());
         IfStatement* ifStmt = new IfStatement(ifs);
         tokenizer.ungetToken();
+        Fparam.clear();
+
         return ifStmt;
     }
+    while (tok.isSemiColon())
+        tok = tokenizer.getToken();
     if (!tok.eol())
         die("Parser::assignStatement", "Expected a eol, instead got", tok);
-
+    Fparam.clear();
     return new AssignmentStatement(varName.getName(), rightHandSideExpr);
 }
 
@@ -1018,9 +1025,8 @@ ExprNode *Parser::primary()
                 die("Parser::primary", "Expected a closeBracket, instead got", tok);
             return new ArrayNode(tok, tested, slice);
         }
-        else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end())
+        else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end() && (std::find(Fparam.begin(), Fparam.end(), tok.getName()) == Fparam.end()))
         {
-
             std::vector<ExprNode *> param = testList();
             Token paren = tokenizer.getToken();
             if (!paren.isCloseParen())

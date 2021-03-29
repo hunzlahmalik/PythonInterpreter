@@ -78,6 +78,7 @@ Token Tokenizer::getToken()
     {
         while (inStream.get(c) && c != '\n')
             ;
+        //skips to the end of line EOL
     }
     if (inStream.bad())
     {
@@ -87,6 +88,7 @@ Token Tokenizer::getToken()
 
     Token token;
     //detecting indents and dedents
+    //C is not EOL
     if (parsingANewLine && c != '\n')
     {
         parsingANewLine = false;
@@ -114,7 +116,7 @@ Token Tokenizer::getToken()
     {
         token.eof() = true;
     }
-    else if (c == '\n')
+    else if (c == '\n' || c== ';')
     {
         parsingANewLine = true; //going to a new line so set this to true
         indent = 0;
@@ -190,7 +192,7 @@ Token Tokenizer::getToken()
     {
         token.symbol(c);
     }
-    else if (isalpha(c))
+    else if (isalpha(c)) //alpha numerical a/A [0-9][a-Z]
     { // an identifier?
         // put c back into the stream so we can read the entire name in a function.
         inStream.putback(c);

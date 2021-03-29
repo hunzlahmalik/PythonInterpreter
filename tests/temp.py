@@ -1,11 +1,21 @@
-x=lambda a:1 if a>10 else 0
+l1=[2,3,4]
+l2=[4,5,6]
+einvalid=l2[4]
 
-a=10
-b=30
+l3=l1+l2
+e1=l1[0]
+elast=l2[2]
 
-add=lambda x, y: x+y #don't do this. Beacuse the variable 'x' is function
-add=lambda a, b: a+b #can do this. Beacuse the variable 'a' and 'b' aren't function
+var1=45
+var2=34
+var3=var1+var2
 
-c=add(3,1)
-print(c)
+print(elast)
+print(l3)
+print(var3)
+
+
+
+
+
 
