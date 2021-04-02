@@ -16,14 +16,14 @@ void Parser::die(std::string where, std::string message, Token &token)
     std::string error;
     std::cout << where << " " << message << std::endl;
     error += where + " " + message + "\n";
-    error+=token.print();
+    error += token.print();
     std::cout << std::endl;
     error += "\n";
 
     std::cout << "\nThe following is a list of tokens that have been identified up to this point.\n";
     error += "\nThe following is a list of tokens that have been identified up to this point.\n";
 
-    std::vector<std::string> temp=tokenizer.printProcessedTokens();
+    std::vector<std::string> temp = tokenizer.printProcessedTokens();
     for (auto s : temp)
         error += s;
 
@@ -196,7 +196,7 @@ Statements *Parser::statements()
             stmts->addStatement(funcState);
         }
         //else if lambda, lambda will be handleed in the assignStatement
-        else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end() && (std::find(Fparam.begin(), Fparam.end(), tok.getName())==Fparam.end()))
+        else if (std::find(functions.begin(), functions.end(), tok.getName()) != functions.end() && (std::find(Fparam.begin(), Fparam.end(), tok.getName()) == Fparam.end()))
         {
             Token funcName = tok;
             tok = tokenizer.getToken();
@@ -219,13 +219,13 @@ Statements *Parser::statements()
         }
         else if (tok.isReturn())
         {
-            ExprNode * rightHandSideExpr = test();
+            ExprNode *rightHandSideExpr = test();
             //terenary operator
             tok = tokenizer.getToken();
             if (tok.isIf())
             {
-                std::vector<IfNode*> ifs;
-                ExprNode* rel;
+                std::vector<IfNode *> ifs;
+                ExprNode *rel;
                 bool isElse = false;
                 do
                 {
@@ -236,7 +236,7 @@ Statements *Parser::statements()
                         if (!tok.isIf())
                         {
                             tokenizer.ungetToken();
-                            rel = returnTrue(true);     //this is not an else if and should always execute if we get to it
+                            rel = returnTrue(true); //this is not an else if and should always execute if we get to it
                             tokenizer.ungetToken(); //mine
                         }
                         else
@@ -251,28 +251,28 @@ Statements *Parser::statements()
                     //tok = tokenizer.getToken();
 
                     //Statements* bod = suite();
-                    Statements* bod = new Statements();
+                    Statements *bod = new Statements();
                     if (isElse)
                         rightHandSideExpr = expr();
 
                     bod->addStatement(new ReturnStatement(rightHandSideExpr));
 
-                    IfNode* node = new IfNode(rel, bod);
+                    IfNode *node = new IfNode(rel, bod);
                     ifs.push_back(node);
                     tok = tokenizer.getToken();
 
                 } while (tok.isElse());
-                IfStatement* ifStmt = new IfStatement(ifs);
+                IfStatement *ifStmt = new IfStatement(ifs);
                 tokenizer.ungetToken();
                 stmts->addStatement(ifStmt);
             }
             else // not ternary operator
             {
                 tokenizer.ungetToken();
-                ReturnStatement* retStmt = new ReturnStatement(rightHandSideExpr);
+                ReturnStatement *retStmt = new ReturnStatement(rightHandSideExpr);
                 stmts->addStatement(retStmt);
             }
-            
+
             tok = tokenizer.getToken();
             while (tok.eol())
             {
@@ -780,7 +780,6 @@ Statement *Parser::assignStatement()
 
         //Token tok = tokenizer.getToken();
 
-
         //get paramets if there are any
         std::vector<std::string> param = parameter_list();
         Fparam = param;
@@ -799,14 +798,14 @@ Statement *Parser::assignStatement()
         tokenizer._tokens.push_back(returnTok);
 
         //return statement
-        Statements* body=new Statements();
-        ExprNode* rightHandSideExpr = test();
+        Statements *body = new Statements();
+        ExprNode *rightHandSideExpr = test();
         //terenary operator
         tok = tokenizer.getToken();
         if (tok.isIf())
         {
-            std::vector<IfNode*> ifs;
-            ExprNode* rel;
+            std::vector<IfNode *> ifs;
+            ExprNode *rel;
             bool isElse = false;
             do
             {
@@ -817,7 +816,7 @@ Statement *Parser::assignStatement()
                     if (!tok.isIf())
                     {
                         tokenizer.ungetToken();
-                        rel = returnTrue(true);     //this is not an else if and should always execute if we get to it
+                        rel = returnTrue(true); //this is not an else if and should always execute if we get to it
                         tokenizer.ungetToken(); //mine
                     }
                     else
@@ -832,25 +831,25 @@ Statement *Parser::assignStatement()
                 //tok = tokenizer.getToken();
 
                 //Statements* bod = suite();
-                Statements* bod = new Statements();
+                Statements *bod = new Statements();
                 if (isElse)
                     rightHandSideExpr = expr();
 
                 bod->addStatement(new ReturnStatement(rightHandSideExpr));
 
-                IfNode* node = new IfNode(rel, bod);
+                IfNode *node = new IfNode(rel, bod);
                 ifs.push_back(node);
                 tok = tokenizer.getToken();
 
             } while (tok.isElse());
-            IfStatement* ifStmt = new IfStatement(ifs);
+            IfStatement *ifStmt = new IfStatement(ifs);
             tokenizer.ungetToken();
             body->addStatement(ifStmt);
         }
-        else//not ternary operator
+        else //not ternary operator
         {
             tokenizer.ungetToken();
-            ReturnStatement* retStmt = new ReturnStatement(rightHandSideExpr);
+            ReturnStatement *retStmt = new ReturnStatement(rightHandSideExpr);
             body->addStatement(retStmt);
         }
 
@@ -862,7 +861,6 @@ Statement *Parser::assignStatement()
         tokenizer.ungetToken();
         Fparam.clear();
         return new FunctionDef(param, body, funcName.getName());
-
     }
     // if we grab the token and it is NOT [, we have a regular assignment expression
     else
@@ -878,8 +876,8 @@ Statement *Parser::assignStatement()
     //tenary operator  [] if [] else []
     if (tok.isIf())
     {
-        std::vector<IfNode*> ifs;
-        ExprNode* rel;
+        std::vector<IfNode *> ifs;
+        ExprNode *rel;
         bool isElse = false;
         do
         {
@@ -890,7 +888,7 @@ Statement *Parser::assignStatement()
                 if (!tok.isIf())
                 {
                     tokenizer.ungetToken();
-                    rel = returnTrue(true);     //this is not an else if and should always execute if we get to it
+                    rel = returnTrue(true); //this is not an else if and should always execute if we get to it
                     tokenizer.ungetToken(); //mine
                 }
                 else
@@ -905,18 +903,18 @@ Statement *Parser::assignStatement()
             //tok = tokenizer.getToken();
 
             //Statements* bod = suite();
-            Statements* bod = new Statements();
+            Statements *bod = new Statements();
             if (isElse)
                 rightHandSideExpr = expr();
 
             bod->addStatement(new AssignmentStatement(varName.getName(), rightHandSideExpr));
 
-            IfNode* node = new IfNode(rel, bod);
+            IfNode *node = new IfNode(rel, bod);
             ifs.push_back(node);
             tok = tokenizer.getToken();
 
         } while (tok.isElse());
-        IfStatement* ifStmt = new IfStatement(ifs);
+        IfStatement *ifStmt = new IfStatement(ifs);
         tokenizer.ungetToken();
         Fparam.clear();
 

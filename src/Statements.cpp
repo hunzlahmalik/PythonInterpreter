@@ -316,7 +316,7 @@ void PrintStatement::evaluate(SymTab &symTab)
                     if (i != a->valueInt.size() - 1)
                         std::cout << ", ";
                 }
-                std::cout << "]";// << std::endl;
+                std::cout << "]"; // << std::endl;
             }
             else
             {
@@ -466,7 +466,7 @@ IfNode::~IfNode()
     delete body;
 }
 
-IfNode::IfNode(ExprNode *rel, Statements *bod) 
+IfNode::IfNode(ExprNode *rel, Statements *bod)
     : relNode{rel}, body{bod}, evaluatedTrue{false} {}
 
 void IfNode::print()

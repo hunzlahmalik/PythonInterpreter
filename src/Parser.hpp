@@ -19,7 +19,7 @@
 class Parser
 {
 public:
-    Parser(Tokenizer &tokenizer) : tokenizer{tokenizer}{}
+    Parser(Tokenizer &tokenizer) : tokenizer{tokenizer} {}
 
     /**
      * @brief we call this function when we know there is something \
@@ -33,7 +33,7 @@ public:
     Statement *assignStatement();
 
     // function to parse everythin in the indention. Used when there is def/ indentation series
-    Statements *suite(bool lambda =false);
+    Statements *suite(bool lambda = false);
     //Statements *func_suite();
 
     //same as the suite()
@@ -71,9 +71,9 @@ public:
     std::string id();
 
 private:
-    Tokenizer &tokenizer;//contains tokens
-    std::vector<std::string> functions;//contains functions
-    void die(std::string where, std::string message, Token &token);//called when there is error
+    Tokenizer &tokenizer;                                           //contains tokens
+    std::vector<std::string> functions;                             //contains functions
+    void die(std::string where, std::string message, Token &token); //called when there is error
 };
 
 #endif

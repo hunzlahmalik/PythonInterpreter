@@ -116,7 +116,7 @@ Token Tokenizer::getToken()
     {
         token.eof() = true;
     }
-    else if (c == '\n' || c== ';')
+    else if (c == '\n' || c == ';')
     {
         parsingANewLine = true; //going to a new line so set this to true
         indent = 0;
@@ -193,7 +193,7 @@ Token Tokenizer::getToken()
         token.symbol(c);
     }
     else if (isalpha(c)) //alpha numerical a/A [0-9][a-Z]
-    { // an identifier?
+    {                    // an identifier?
         // put c back into the stream so we can read the entire name in a function.
         inStream.putback(c);
         token.setName(readName());

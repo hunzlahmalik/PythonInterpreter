@@ -7,7 +7,7 @@
 #include "Expr.hpp"
 #include "SymTab.hpp"
 
-// pure-virutal class 
+// pure-virutal class
 class Statement
 {
 public:
@@ -32,7 +32,7 @@ public:
 
     //addStatement to the list of Statements
     void addStatement(Statement *statement);
-    
+
     //runs all statements
     void evaluate(SymTab &symTab);
 

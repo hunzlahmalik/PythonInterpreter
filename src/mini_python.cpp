@@ -25,15 +25,16 @@ extern bool debug(false);
 int main(int argc, char *argv[])
 {
 
-    /*if( argc != 2) {
+    if (argc != 2)
+    {
         std::cout << "usage: " << argv[0] << " input file name\n";
         exit(1);
-    }*/
+    }
 
     std::ifstream inputStream;
-    char file[] = "../tests/tc4.py";
+    // char file[] = "../tests/tc4.py";
 
-    inputStream.open(file, std::ios::in);
+    inputStream.open(argv[1], std::ios::in);
     if (!inputStream.is_open())
     {
         std::cout << "Unable top open " << argv[1] << ". Terminating...";
