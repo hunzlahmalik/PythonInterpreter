@@ -168,6 +168,7 @@
     <None Include="..\tests\tc6.py" />
     <None Include="..\tests\tc7.py" />
     <None Include="..\tests\temp.py" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="dryrun.txt" />

@@ -88,5 +88,9 @@
     <None Include="..\tests\temp.py">
       <Filter>Tests</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dryrun.txt" />
   </ItemGroup>
 </Project>

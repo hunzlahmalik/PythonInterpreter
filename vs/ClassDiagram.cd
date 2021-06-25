@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ExprNode" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAABAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfixExprNode" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAABAAAAIIAQgAAAAAAAAAhAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NotNode" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAACAAAAAAAAgAIAAAAAAAIAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WholeNumber" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Variable" Collapsed="true">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StringNode" Collapsed="true">
+    <Position X="16.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrayNode" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAAABAQAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrayLen" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CallNode" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAAI=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Expr.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Parser" Collapsed="true">
+    <Position X="32.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAACCAAAgAAwAAAEAEIAAQQCAIAIAAEAkACgA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Parser.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Statement" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAACAAIAAAAEAAAQEAEAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Statements" Collapsed="true">
+    <Position X="34.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAIAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssignmentStatement" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAgAEIAAEAAAAAAACAAAAQ=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrAssignmentStatement" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAAAACAAAAAAEAAAEIAACAAAAAAACAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrAccessAssign" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAAAAAAAAAAAAAAAAAAIAAEAAAAAAACABAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrOpPop" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAAAAAgAAAAAAAAAAAAIAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArrOpAppend" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAQAAAAAAIAAAEABAQAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrintStatement" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAQAAAgAAAAAAIAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ForStatement" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAIAAAAAAAAEAAAACAFAQIEBCAAAAACAAAABAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IfNode" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAAAAAAAEAAAAAAAAAIAAAYIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IfStatement" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAAQIAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FunctionStatement" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAEAAAAAAAAABAAABAAAIAACAAAAAAAACAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FunctionDef" Collapsed="true">
+    <Position X="24" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAAAAQAAAAAAEAAIAACAAAAAAAACAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FunctionCall" Collapsed="true">
+    <Position X="28.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAAABAAAAAAAAAAIAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReturnStatement" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAgAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Functions" Collapsed="true">
+    <Position X="31" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAgAAAAIAAAQAAAAAAAAAAAAAAUA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Statements.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SymTab" Collapsed="true">
+    <Position X="31" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBAQAAgAQCgAAAAEBAAAAIgAMAAAAAAAAAAAQAAAQA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\SymTab.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Token" Collapsed="true">
+    <Position X="32.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wASIIOgAhAgCIlEUInMlS4HkEJYAIAhMiBQEBhINAJA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Token.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tokenizer" Collapsed="true">
+    <Position X="34.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACEABSAABAAIgABCAAQAEAAAAAAAEAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\Tokenizer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="TypeDescriptor" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAIAAAAAAAFAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\SymTab.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="NumberDescriptor" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\SymTab.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="StringDescriptor" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\SymTab.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ArrayDescriptor" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\hunzl\OneDrive\Upwork\PythonInterpreter\src\SymTab.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

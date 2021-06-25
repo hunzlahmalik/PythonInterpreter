@@ -14,74 +14,74 @@ class Functions;
 struct TypeDescriptor
 {
 
-    enum types
-    {
-        INTEGER,
-        DOUBLE,
-        BOOL,
-        STRING,
-        INTARRAY,
-        STRARRAY
-    };
+  enum types
+  {
+    INTEGER,
+    DOUBLE,
+    BOOL,
+    STRING,
+    INTARRAY,
+    STRARRAY
+  };
 
-    TypeDescriptor(types type) : _type{type} {}
+  TypeDescriptor(types type) : _type{type} {}
 
-    types &type() { return _type; }
+  types &type() { return _type; }
 
-    virtual ~TypeDescriptor() {}
+  virtual ~TypeDescriptor() {}
 
 protected:
-    types _type;
+  types _type;
 };
 
 //number type
 struct NumberDescriptor : TypeDescriptor
 {
-    NumberDescriptor(types descType) : TypeDescriptor(descType) {}
-    union
-    {
-        int intValue;
-        double doubleValue;
-        short boolValue;
-    } value;
+  NumberDescriptor(types descType) : TypeDescriptor(descType) {}
+  union
+  {
+    int intValue;
+    double doubleValue;
+    short boolValue;
+  } value;
 };
 
 //string type
 struct StringDescriptor : TypeDescriptor
 {
-    StringDescriptor(types descType) : TypeDescriptor(descType) {}
-    std::string value;
+  StringDescriptor(types descType) : TypeDescriptor(descType) {}
+  std::string value;
 };
 
 //arrya type
 struct ArrayDescriptor : TypeDescriptor
 {
-    ArrayDescriptor(types descType) : TypeDescriptor(descType) {}
-    std::vector<int> valueInt;
-    std::vector<std::string> valueString;
+  ArrayDescriptor(types descType) : TypeDescriptor(descType) {}
+  std::vector<int> valueInt;
+  std::vector<std::string> valueString;
 };
 
 //symbol table
 class SymTab
 {
 public:
-    SymTab();
-    ~SymTab();
-    void setValueFor(std::string vName, TypeDescriptor *value);
-    bool isDefined(std::string vName);
-    bool isDefinedOwnScope(std::string vName);
-    TypeDescriptor *getValueFor(std::string vName);
-    std::string getValueString(std::string vName);
-    void openScope();
-    void storeReturnValue(TypeDescriptor *val);
-    TypeDescriptor *getReturnValue();
-    void closeScope();
-    Functions *getFunctions() { return _func; };
+  SymTab();
+  ~SymTab();
+  void setValueFor(std::string vName, TypeDescriptor *value);
+  bool isDefined(std::string vName);
+  bool isDefinedOwnScope(std::string vName);
+  TypeDescriptor *getValueFor(std::string vName);
+  std::string getValueString(std::string vName);
+  void openScope();
+  void storeReturnValue(TypeDescriptor *val);
+  TypeDescriptor *getReturnValue();
+  void closeScope();
+  Functions *getFunctions() { return _func; };
 
 private:
-    std::vector<std::map<std::string, TypeDescriptor *>> symTab;
-    Functions *_func;
-    TypeDescriptor *_return;
+  std::vector<std::map<std::string, TypeDescriptor *>> symTab;
+  Functions *_func;
+  TypeDescriptor *_return;
 };
 
 #endif //EXPRINTER_SYMTAB_HPP

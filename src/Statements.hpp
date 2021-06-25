@@ -11,36 +11,36 @@
 class Statement
 {
 public:
-    Statement();
-    ~Statement();
+  Statement();
+  ~Statement();
 
-    virtual void print() = 0;
-    virtual void evaluate(SymTab &symTab) = 0;
-    void setIndentLevel(int indent) { indentLevel = indent; }
-    int getIndentLevel() { return indentLevel; }
+  virtual void print() = 0;
+  virtual void evaluate(SymTab &symTab) = 0;
+  void setIndentLevel(int indent) { indentLevel = indent; }
+  int getIndentLevel() { return indentLevel; }
 
 private:
-    int indentLevel;
+  int indentLevel;
 };
 
 //list of statements and a statement can be represented as on of python terms
 class Statements
 {
 public:
-    Statements();
-    ~Statements();
+  Statements();
+  ~Statements();
 
-    //addStatement to the list of Statements
-    void addStatement(Statement *statement);
+  //addStatement to the list of Statements
+  void addStatement(Statement *statement);
 
-    //runs all statements
-    void evaluate(SymTab &symTab);
+  //runs all statements
+  void evaluate(SymTab &symTab);
 
-    //print function for all the sattemnts
-    void print();
+  //print function for all the sattemnts
+  void print();
 
 private:
-    std::vector<Statement *> _statements;
+  std::vector<Statement *> _statements;
 };
 
 // AssignmentStatement represents the notion of an lValue having been assigned an rValue.
@@ -48,93 +48,93 @@ private:
 class AssignmentStatement : public Statement
 {
 public:
-    AssignmentStatement();
-    ~AssignmentStatement();
+  AssignmentStatement();
+  ~AssignmentStatement();
 
-    //makes an assignment statement
-    AssignmentStatement(std::string lhsVar, ExprNode *rhsExpr);
+  //makes an assignment statement
+  AssignmentStatement(std::string lhsVar, ExprNode *rhsExpr);
 
-    //return the left variable name
-    std::string &lhsVariable();
+  //return the left variable name
+  std::string &lhsVariable();
 
-    //returns the right side expression
-    ExprNode *&rhsExpression();
+  //returns the right side expression
+  ExprNode *&rhsExpression();
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    std::string _lhsVariable;
-    ExprNode *_rhsExpression;
+  std::string _lhsVariable;
+  ExprNode *_rhsExpression;
 };
 
 //array assignment operator
 class ArrAssignmentStatement : public Statement
 {
 public:
-    ArrAssignmentStatement();
-    ~ArrAssignmentStatement();
+  ArrAssignmentStatement();
+  ~ArrAssignmentStatement();
 
-    //makes new array assignment
-    ArrAssignmentStatement(std::string lhsVar, std::vector<ExprNode *> rhsArray);
+  //makes new array assignment
+  ArrAssignmentStatement(std::string lhsVar, std::vector<ExprNode *> rhsArray);
 
-    std::string &lhsVariable();
+  std::string &lhsVariable();
 
-    //returnt the right side list of expressions
-    std::vector<ExprNode *> &rhsArray();
+  //returnt the right side list of expressions
+  std::vector<ExprNode *> &rhsArray();
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    std::string _lhsVariable;
-    std::vector<ExprNode *> _rhsArray;
+  std::string _lhsVariable;
+  std::vector<ExprNode *> _rhsArray;
 };
 
 class ArrAccessAssign : public Statement
 {
 public:
-    ArrAccessAssign();
-    ~ArrAccessAssign();
-    ArrAccessAssign(std::string lhs, int i, ExprNode *rhs);
+  ArrAccessAssign();
+  ~ArrAccessAssign();
+  ArrAccessAssign(std::string lhs, int i, ExprNode *rhs);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    std::string _lhsVariable;
-    int index;
-    ExprNode *_rhsExpression;
+  std::string _lhsVariable;
+  int index;
+  ExprNode *_rhsExpression;
 };
 
 class ArrOpPop : public Statement
 {
 public:
-    ArrOpPop();
-    ~ArrOpPop();
-    ArrOpPop(std::string arrName);
+  ArrOpPop();
+  ~ArrOpPop();
+  ArrOpPop(std::string arrName);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    std::string _arrName;
+  std::string _arrName;
 };
 
 //append funciton
 class ArrOpAppend : public Statement
 {
 public:
-    ArrOpAppend();
-    ~ArrOpAppend();
-    ArrOpAppend(std::string arrName, ExprNode *test);
+  ArrOpAppend();
+  ~ArrOpAppend();
+  ArrOpAppend(std::string arrName, ExprNode *test);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    ExprNode *_test;
-    std::string _arrName;
+  ExprNode *_test;
+  std::string _arrName;
 };
 
 // one of main statements
@@ -142,142 +142,142 @@ private:
 class PrintStatement : public Statement
 {
 public:
-    PrintStatement();
-    ~PrintStatement();
-    PrintStatement(std::vector<ExprNode *> mess);
+  PrintStatement();
+  ~PrintStatement();
+  PrintStatement(std::vector<ExprNode *> mess);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    std::vector<ExprNode *> message;
+  std::vector<ExprNode *> message;
 };
 
 class ForStatement : public Statement
 {
 public:
-    ForStatement();
-    ~ForStatement();
-    ForStatement(Token tok, std::vector<ExprNode *> range, Statements *b);
+  ForStatement();
+  ~ForStatement();
+  ForStatement(Token tok, std::vector<ExprNode *> range, Statements *b);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
-    bool range();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
+  bool range();
 
 private:
-    int lower, upper, increment;
-    bool initLow, initUpper, initIncrement;
-    std::vector<ExprNode *> _range;
-    Token name;
-    Statements *body;
+  int lower, upper, increment;
+  bool initLow, initUpper, initIncrement;
+  std::vector<ExprNode *> _range;
+  Token name;
+  Statements *body;
 };
 
 //node for the if statements
 class IfNode : public Statement
 {
 public:
-    IfNode();
-    ~IfNode();
-    IfNode(ExprNode *rel, Statements *bod);
+  IfNode();
+  ~IfNode();
+  IfNode(ExprNode *rel, Statements *bod);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
-    bool evaluated();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
+  bool evaluated();
 
 private:
-    ExprNode *relNode;
-    Statements *body;
-    bool evaluatedTrue;
+  ExprNode *relNode;
+  Statements *body;
+  bool evaluatedTrue;
 };
 
 //collective list of IFNodes
 class IfStatement : public Statement
 {
 public:
-    IfStatement();
-    ~IfStatement();
-    IfStatement(std::vector<IfNode *> ifs);
+  IfStatement();
+  ~IfStatement();
+  IfStatement(std::vector<IfNode *> ifs);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    std::vector<IfNode *> body;
+  std::vector<IfNode *> body;
 };
 
 //is stored inside of the functions class
 class FunctionStatement : public Statement
 {
 public:
-    FunctionStatement();
-    ~FunctionStatement();
-    FunctionStatement(std::vector<std::string> param, Statements *s, std::string _name);
+  FunctionStatement();
+  ~FunctionStatement();
+  FunctionStatement(std::vector<std::string> param, Statements *s, std::string _name);
 
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
-    std::string getParameterName(int index);
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
+  std::string getParameterName(int index);
 
 private:
-    Statements *suite;
-    std::vector<std::string> parameters;
-    std::string _name;
+  Statements *suite;
+  std::vector<std::string> parameters;
+  std::string _name;
 };
 
 //Defines a new function
 class FunctionDef : public Statement
 {
 public:
-    FunctionDef();
-    FunctionDef(std::vector<std::string> param, Statements *s, std::string _name);
-    ~FunctionDef();
-    virtual void evaluate(SymTab &symTab);
-    virtual void print();
+  FunctionDef();
+  FunctionDef(std::vector<std::string> param, Statements *s, std::string _name);
+  ~FunctionDef();
+  virtual void evaluate(SymTab &symTab);
+  virtual void print();
 
 private:
-    Statements *suite;
-    std::vector<std::string> parameters;
-    std::string _name;
+  Statements *suite;
+  std::vector<std::string> parameters;
+  std::string _name;
 };
 
 class FunctionCall : public Statement
 {
 public:
-    FunctionCall(ExprNode *call);
-    ~FunctionCall();
+  FunctionCall(ExprNode *call);
+  ~FunctionCall();
 
-    virtual void print();
-    virtual void evaluate(SymTab &symTab);
+  virtual void print();
+  virtual void evaluate(SymTab &symTab);
 
 private:
-    ExprNode *_call;
+  ExprNode *_call;
 };
 
 //'return' statement
 class ReturnStatement : public Statement
 {
 public:
-    ReturnStatement(ExprNode *ret);
-    ~ReturnStatement();
+  ReturnStatement(ExprNode *ret);
+  ~ReturnStatement();
 
-    virtual void print();
-    virtual void evaluate(SymTab &symTab);
+  virtual void print();
+  virtual void evaluate(SymTab &symTab);
 
 private:
-    ExprNode *_return;
+  ExprNode *_return;
 };
 
 //Stores all of our functions
 class Functions
 {
 public:
-    Functions();
-    ~Functions();
-    void addFunction(std::string name, FunctionStatement *func);
-    bool isDefined(std::string name);
-    FunctionStatement *findFunction(std::string funcName);
+  Functions();
+  ~Functions();
+  void addFunction(std::string name, FunctionStatement *func);
+  bool isDefined(std::string name);
+  FunctionStatement *findFunction(std::string funcName);
 
 private:
-    std::map<std::string, FunctionStatement *> functions;
+  std::map<std::string, FunctionStatement *> functions;
 };
 
 #endif //EXPRINTER_STATEMENTS_HPP

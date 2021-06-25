@@ -1,4 +1,4 @@
-x=lambda a:1 if a>10 else 0
+x=lambda k:1 if k>10 else 0
 
 a=x(11)
 b=x(5)
